@@ -23,14 +23,21 @@ functions:
       - http:
           path: /secret/{id}
           method: get
-          cors: true
+          cors:
+            origin: "*"
+            headers:
+              - admin-key
   draw:
     handler: src/handlers/secrets.draw
+    role: arn:aws:iam::679299021742:role/dev-week-1
     events:
       - http:
           path: /secret/{id}/draw
           method: put
-          cors: true
+          cors:
+            origin: "*"
+            headers:
+              - admin-key
   createParticipant:
     handler: src/handlers/participants.create
     events:
@@ -45,4 +52,7 @@ functions:
       - http:
           path: /secret/{id}/participants/{participantId}
           method: delete
-          cors: true
+          cors:
+            origin: "*"
+            headers:
+              - admin-key
